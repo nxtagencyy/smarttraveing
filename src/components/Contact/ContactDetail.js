@@ -26,9 +26,9 @@ const ContactDetail = () => {
           <h2 className="mt-4 text-base font-medium text-gray-800 dark:text-white">
             Email
           </h2>
-          <a href="mailto:mail@mail.com">
+          <a href="mailto:manumohan3223@gmail.com">
             <p className="mt-2 text-sm text-blue-500 dark:text-blue-400">
-              mail@mail.com
+              manumohan3223@gmail.com
             </p>
           </a>
         </div>
@@ -58,7 +58,7 @@ const ContactDetail = () => {
             Visit us
           </h2>
           <p className="mt-2 text-sm text-blue-500 dark:text-blue-400">
-            Jaipur,Rajasthan,India
+            Tumkur
           </p>
         </div>
         <div className="p-4 rounded-lg bg-blue-50 md:p-6 dark:bg-gray-800">
@@ -81,8 +81,8 @@ const ContactDetail = () => {
           <h2 className="mt-4 text-base font-medium text-gray-800 dark:text-white">
             Call us
           </h2>
-          <a href="tel:+91-9876543210">
-            <p className="mt-2 text-sm text-blue-500">+91-9876543210</p>
+          <a href="tel:+91-7204728132">
+            <p className="mt-2 text-sm text-blue-500">+91 7204728132</p>
           </a>
         </div>
       </div>

@@ -32,17 +32,12 @@ const BookingForm = ({ title }) => {
         "FogiT6XVQp58xxl2h"
       );
 
-      // Google Sheets
-      await fetch(
-        "https://script.google.com/macros/s/AKfycbxU_4qP-V0kCNQfkv52_rqW__pjEjBNRj5RG8M7Xobq6u6PDhgJ90QAoso3srpj5ra60Q/exec",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        }
-      );
+      // Send to Google Sheet via API route
+      await fetch("/api/submit-to-sheet", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
 
       setSubmitted(true);
     } catch (error) {
