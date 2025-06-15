@@ -12,8 +12,9 @@ const caveat = Caveat({
 });
 
 export const metadata = {
-  title: "Travelwebsite",
-  description: "Travelwebsite-explore new world",
+  title: "Smart Travelling, Smarter Adventures",
+  description:
+    "Discover a smarter way to travel — explore breathtaking destinations, hidden gems, and unforgettable experiences around the world.",
 };
 
 export default function RootLayout({ children }) {
