@@ -1,11 +1,4 @@
-# Travel Website Nextjs Project
-
-Built with the Next.js 14 App Router and Tailwind
-
-![Project Image](https://github.com/rishabhtak/travelwebsite/blob/master/public/project-image.png)
-
 ## Features
-
 - Complete built in Next.js 14 and Tailwind
 - Beautiful landing page
 - Added image carousel using react-multi-carousel npm package
