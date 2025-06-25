@@ -64,7 +64,7 @@ const BookingForm = ({ title }) => {
 
       {submitted ? (
         <p className="text-green-600 text-lg font-semibold">
-          Thank you! We'll contact you soon.
+          Thank you! We&apos;ll contact you soon.
         </p>
       ) : (
         <form ref={form} onSubmit={sendEmail} className="space-y-4">
