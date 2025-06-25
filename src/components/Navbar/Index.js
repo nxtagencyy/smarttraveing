@@ -60,7 +60,22 @@ const navData = [
     ],
   },
   { id: 4, name: "blogs", url: `/blogs` },
-  { id: 5, name: "about us", url: "/about" },
+  {
+    id: 5,
+    name: "about us",
+    cat: [
+      {
+        id: 1,
+        name: "Who are we",
+        url: "/about",
+      },
+      {
+        id: 1,
+        name: "Admin Login",
+        url: "/admin",
+      },
+    ],
+  },
   { id: 6, name: "contact", url: "/contact" },
 ];
 
