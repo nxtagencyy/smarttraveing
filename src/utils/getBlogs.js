@@ -49,7 +49,7 @@ export const blogsArray = [
         "\n" +
         "\n",
       slug: "exploring-royal-rajasthan-a-tapestry-of-culture-heritage-and-natural-splendor",
-      createdAt: "2023-09-23T12:26:23.916Z",
+      createdAt: "2025-06-18T05:26:00.000Z",
     },
   },
 ];

@@ -15,15 +15,12 @@ import BookingForm from "../formData/BookingForm";
 const TourDetails = ({ tourdetail }) => {
   return (
     <>
-      <SecondBanner
-        img={tourdetail.attributes.image_url}
-        alt={tourdetail.attributes.title}
-      />
+      <SecondBanner img={tourdetail.image_url} alt={tourdetail.title} />
 
       <Wrapper>
         <div className="py-10 border-b-2">
           <h1 className="text-2xl md:text-5xl font-bold text-[#002248]">
-            {tourdetail.attributes.title}
+            {tourdetail.title}
           </h1>
           <div className="flex md:px-6 py-3 gap-4">
             <div className="flex items-center">
@@ -46,14 +43,13 @@ const TourDetails = ({ tourdetail }) => {
                 />
               </svg>
               <h1 className="px-2 text-lg capitalize">
-                {tourdetail.attributes.destinations}
+                {tourdetail.destinations}
               </h1>
             </div>
             <div className="flex items-center">
               <FaClockRotateLeft className="float-left mr-2 text-sm" />
               <p className="text-sm font-semibold capitalize">
-                {tourdetail.attributes.nights} Nights /
-                {tourdetail.attributes.days} Days
+                {tourdetail.nights} Nights /{tourdetail.days} Days
               </p>
             </div>
           </div>
@@ -81,7 +77,7 @@ const TourDetails = ({ tourdetail }) => {
           <div className="capitalize text-[#002248] text-3xl font-semibold">
             about this tour
           </div>
-          <p className="mt-5">{tourdetail.attributes.about}</p>
+          <p className="mt-5">{tourdetail.about}</p>
         </div>
         <div className="py-10">
           <div className="capitalize text-[#002248] text-2xl font-semibold pb-5">
@@ -89,7 +85,7 @@ const TourDetails = ({ tourdetail }) => {
           </div>
           <div className="sm:flex items-center justify-between gap-x-6 xl:gap-x-8">
             <ul>
-              {tourdetail.attributes.included.map((item) => (
+              {tourdetail.included.map((item) => (
                 <li key={item.id} className="pb-2">
                   <span>
                     <FaCheck className="mr-1 inline-block" />
@@ -99,7 +95,7 @@ const TourDetails = ({ tourdetail }) => {
               ))}
             </ul>
             <ul className="max-sm:mt-5">
-              {tourdetail.attributes.excluded.map((item) => (
+              {tourdetail.excluded.map((item) => (
                 <li key={item.id} className="pb-2">
                   <span>
                     <VscChromeClose className="mr-1 inline-block" />
@@ -114,7 +110,7 @@ const TourDetails = ({ tourdetail }) => {
           <div className="capitalize text-[#002248] text-2xl font-semibold pb-5">
             Tour Plan
           </div>
-          {tourdetail.attributes.tour_details.map((item, index) => (
+          {tourdetail.tour_details.map((item, index) => (
             <details
               key={index + 1}
               className="w-full mb-5 max-w-[1366px] bg-[#f2f6ff] py-2 rounded-md shadow-md group mx-auto max-h-[56px] open:!max-h-full transition-[max-height] duration-500 overflow-hidden"
@@ -154,7 +150,7 @@ const TourDetails = ({ tourdetail }) => {
               </div>
             </details>
           ))}
-          <BookingForm title={tourdetail.attributes.title} />
+          <BookingForm title={tourdetail.title} />
         </div>
       </Wrapper>
     </>

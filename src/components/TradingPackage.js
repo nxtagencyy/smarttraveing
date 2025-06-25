@@ -26,29 +26,28 @@ const responsive = {
   },
 };
 
-const CustomLeftArrow = ({ onClick }) => {
-  return (
-    <div
-      onClick={() => onClick()}
-      className="absolute top-1/3 w-[50px] h-[50px] bg-black/50 rounded-full z-10 flex items-center justify-center cursor-pointer hover:bg-eucalyptus ml-10 -translate-x-24 opacity-0 ease-in duration-500 group-hover:translate-x-0 group-hover:opacity-100"
-    >
-      <FaAngleLeft className="text-white text-lg" />
-    </div>
-  );
-};
+const CustomLeftArrow = ({ onClick }) => (
+  <div
+    onClick={onClick}
+    className="absolute top-1/3 w-[50px] h-[50px] bg-black/50 rounded-full z-10 flex items-center justify-center cursor-pointer hover:bg-eucalyptus ml-10 -translate-x-24 opacity-0 ease-in duration-500 group-hover:translate-x-0 group-hover:opacity-100"
+  >
+    <FaAngleLeft className="text-white text-lg" />
+  </div>
+);
 
-const CustomRightArrow = ({ onClick }) => {
-  return (
-    <div
-      onClick={() => onClick()}
-      className="absolute right-0 top-1/3 w-[50px] h-[50px] bg-black/50 rounded-full z-10 flex items-center justify-center cursor-pointer hover:bg-eucalyptus mr-10 translate-x-24 opacity-0 ease-in duration-500 group-hover:translate-x-0 group-hover:opacity-100"
-    >
-      <FaAngleRight className="text-white text-lg" />
-    </div>
-  );
-};
+const CustomRightArrow = ({ onClick }) => (
+  <div
+    onClick={onClick}
+    className="absolute right-0 top-1/3 w-[50px] h-[50px] bg-black/50 rounded-full z-10 flex items-center justify-center cursor-pointer hover:bg-eucalyptus mr-10 translate-x-24 opacity-0 ease-in duration-500 group-hover:translate-x-0 group-hover:opacity-100"
+  >
+    <FaAngleRight className="text-white text-lg" />
+  </div>
+);
 
 const TradingPackage = ({ tours }) => {
+  const isLoading = !Array.isArray(tours);
+  const hasData = Array.isArray(tours) && tours.length > 0;
+
   return (
     <div
       style={{
@@ -61,21 +60,32 @@ const TradingPackage = ({ tours }) => {
           title="trading tour packages"
           desc="Explore the india with our trading tour packages"
         />
-        <Carousel
-          responsive={responsive}
-          removeArrowOnDeviceType={["tablet", "mobile"]}
-          partialVisible={true}
-          arrows={true}
-          className="group"
-          customLeftArrow={<CustomLeftArrow />}
-          customRightArrow={<CustomRightArrow />}
-        >
-          {tours.map((item) => (
-            <div key={item.id}>
-              <PackageCard item={item} />
-            </div>
-          ))}
-        </Carousel>
+
+        {isLoading && (
+          <p className="text-center text-gray-500">Loading tours...</p>
+        )}
+
+        {hasData && (
+          <Carousel
+            responsive={responsive}
+            removeArrowOnDeviceType={["tablet", "mobile"]}
+            partialVisible={true}
+            arrows={true}
+            className="group"
+            customLeftArrow={<CustomLeftArrow />}
+            customRightArrow={<CustomRightArrow />}
+          >
+            {tours.map((item) => (
+              <div key={item.id}>
+                <PackageCard item={item} />
+              </div>
+            ))}
+          </Carousel>
+        )}
+
+        {!isLoading && !hasData && (
+          <p className="text-center text-red-500">No tour packages found.</p>
+        )}
       </Wrapper>
     </div>
   );
