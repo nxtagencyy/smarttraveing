@@ -1,4 +1,3 @@
-// app/admin/page.tsx (Admin Panel with Login + Tour Package Form)
 "use client";
 
 import { useState } from "react";
@@ -20,9 +19,9 @@ export default function AdminPage() {
     thumbnail_url: "",
     image_url: "",
     slug: "",
-    tour_details: [],
-    included: [],
-    excluded: [],
+    tour_details: [{ tour_title: "", tour_details: "" }],
+    included: [{ text: "" }],
+    excluded: [{ text: "" }],
   });
 
   const handleLogin = async () => {
@@ -49,13 +48,14 @@ export default function AdminPage() {
     });
   };
 
-  const handleJSONFieldChange = (fieldName, value) => {
-    try {
-      const parsed = JSON.parse(value);
-      setFormData({ ...formData, [fieldName]: parsed });
-    } catch (error) {
-      alert("Invalid JSON format in " + fieldName);
-    }
+  const handleArrayChange = (field, index, key, value) => {
+    const updated = [...formData[field]];
+    updated[index][key] = value;
+    setFormData({ ...formData, [field]: updated });
+  };
+
+  const addItem = (field, itemTemplate) => {
+    setFormData({ ...formData, [field]: [...formData[field], itemTemplate] });
   };
 
   const handleSubmit = async (e) => {
@@ -136,19 +136,95 @@ export default function AdminPage() {
           Offers?
         </label>
 
-        {[
-          { key: "tour_details", label: "Tour Details (JSON)" },
-          { key: "included", label: "Included Items (JSON)" },
-          { key: "excluded", label: "Excluded Items (JSON)" },
-        ].map(({ key, label }) => (
-          <textarea
-            key={key}
-            name={key}
-            placeholder={label}
-            onChange={(e) => handleJSONFieldChange(key, e.target.value)}
-            className="border p-2 h-32"
-          />
-        ))}
+        {/* Tour Details Inputs */}
+        <div>
+          <h3 className="font-semibold">Tour Details</h3>
+          {formData.tour_details.map((item, index) => (
+            <div key={index} className="grid grid-cols-2 gap-2 mb-2">
+              <input
+                placeholder="Title"
+                value={item.tour_title}
+                onChange={(e) =>
+                  handleArrayChange(
+                    "tour_details",
+                    index,
+                    "tour_title",
+                    e.target.value
+                  )
+                }
+                className="border p-2"
+              />
+              <input
+                placeholder="Details"
+                value={item.tour_details}
+                onChange={(e) =>
+                  handleArrayChange(
+                    "tour_details",
+                    index,
+                    "tour_details",
+                    e.target.value
+                  )
+                }
+                className="border p-2"
+              />
+            </div>
+          ))}
+          <button
+            type="button"
+            className="text-blue-600"
+            onClick={() =>
+              addItem("tour_details", { tour_title: "", tour_details: "" })
+            }
+          >
+            + Add More Tour Day
+          </button>
+        </div>
+
+        {/* Included Items */}
+        <div>
+          <h3 className="font-semibold">Included</h3>
+          {formData.included.map((item, index) => (
+            <input
+              key={index}
+              placeholder="Included item"
+              value={item.text}
+              onChange={(e) =>
+                handleArrayChange("included", index, "text", e.target.value)
+              }
+              className="border p-2 w-full mb-2"
+            />
+          ))}
+          <button
+            type="button"
+            className="text-blue-600"
+            onClick={() => addItem("included", { text: "" })}
+          >
+            + Add Included Item
+          </button>
+        </div>
+
+        {/* Excluded Items */}
+        <div>
+          <h3 className="font-semibold">Excluded</h3>
+          {formData.excluded.map((item, index) => (
+            <input
+              key={index}
+              placeholder="Excluded item"
+              value={item.text}
+              onChange={(e) =>
+                handleArrayChange("excluded", index, "text", e.target.value)
+              }
+              className="border p-2 w-full mb-2"
+            />
+          ))}
+          <button
+            type="button"
+            className="text-blue-600"
+            onClick={() => addItem("excluded", { text: "" })}
+          >
+            + Add Excluded Item
+          </button>
+        </div>
 
         <button type="submit" className="bg-green-600 text-white px-4 py-2">
           Submit Package
